@@ -26,6 +26,7 @@ Currently Developed :
 - User profile
 - Edit profile
 - Top users
+- Assets recolor
 
 Future Development :
 - Chat
