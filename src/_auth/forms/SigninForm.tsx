@@ -29,25 +29,22 @@ const SigninForm = () =>{
     })
 
     //2. Define a submit handler
-    async function onSubmit(values: z.infer<typeof SigninValidation>){
-        const session = await signInAccount({
-            email: values.email,
-            password: values.password,
-        })
+    const handleSignin = async (user: z.infer<typeof SigninValidation>) =>{
+        const session = await signInAccount(user)
 
         if(!session){
-            return toast({ title: 'Sign in failed. Please try again.' })
+            return toast({ title: 'Login failed. Please try again.' })
 
         }
 
-        const isLoggedIn = await checkAuthUser()
+        const isLoggedIn = await checkAuthUser();
 
         if(isLoggedIn){
             form.reset();
             
             navigate('/')
         }else{
-            return toast({ title: 'Sign up failed. Please try again.' })
+            return toast({ title: 'Login failed. Please try again.' })
         }
     }
 
@@ -57,8 +54,8 @@ const SigninForm = () =>{
                 <img src="/assets/images/logoV.svg" alt="logo" />
 
                 <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">Log in to your account</h2>
-                <p className="text-light-3 small-medium md:base-regular mt-2">Welcome back! Please enter your details</p>
-                <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col gap-5 w-full mt-4" >
+                <p className="text-light-3 small-medium md:base-regular mt-2">Welcome back! Please enter your details.</p>
+                <form onSubmit={form.handleSubmit(handleSignin)} className="flex flex-col gap-5 w-full mt-4" >
                     <FormField 
                         control={form.control}
                         name="email"

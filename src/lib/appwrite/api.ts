@@ -63,9 +63,19 @@ export async function singInAccount(user: {email: string; password: string}){
     }
 }
 
-export async function getCurrentUser(){
+export async function getAccount() {
     try {
         const currentAccount = await account.get();
+
+        return currentAccount;
+    } catch (error) {
+        console.log(error)
+    }
+}
+
+export async function getCurrentUser(){
+    try {
+        const currentAccount = await getAccount();
 
         if(!currentAccount) throw Error;
 
@@ -80,6 +90,7 @@ export async function getCurrentUser(){
         return currentUser.documents[0];
     } catch (error) {
         console.log(error)
+        return null;
     }
 }
 
