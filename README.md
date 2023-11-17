@@ -38,12 +38,12 @@ As said in the beginning i used [Appwrite](appwrite.io) to store data from the a
 
 # Tools
 
-React JS    : JS library, Routing
-Vite        : Framework
-Typescript  : JS type validation
-Appwrite    : Database connection and authorization
-Tanstack    : Querying data from database
-Tailwind    : CSS library
-Shadcn UI   : UI library
-NodeJS      : Package manager and installer
-Zod         : Form validation
+- React JS    : JS library, Routing
+- Vite        : Framework
+- Typescript  : JS type validation
+- Appwrite    : Database connection and authorization
+- Tanstack    : Querying data from database
+- Tailwind    : CSS library
+- Shadcn UI   : UI library
+- NodeJS      : Package manager and installer
+- Zod         : Form validation
