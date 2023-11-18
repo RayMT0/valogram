@@ -7,7 +7,9 @@ import { Models } from "appwrite";
 const Home = () => {
   const { data: posts, isPending: isPostLoading, isError: isErrorPosts } = useGetRecentPosts();
 
-  const { data: creators, isPending: isLoadingCreators, isError: isErrorCreators } = useGetTopUsers(10);
+  const { data: creators, isPending: isLoadingCreators, isError: isErrorCreators } = useGetTopUsers(6);
+
+  const sortedCreators = creators?.documents.sort((a,b) => b.posts.length - a.posts.length)
 
   if(isErrorPosts || isErrorCreators){
     return (
@@ -45,9 +47,9 @@ const Home = () => {
           <Loader />
         ): (
           <ul className="grid 2xl:grid-cols-2 gap-6">
-            {creators?.documents.map((creator) => (
+            {sortedCreators?.map((creator) => (
               <li key={creator.$id}>
-                <UserCard user={creator}/>
+                <UserCard user={creator} showPostCount={true}/>
               </li>
             ))}
           </ul>

@@ -6,9 +6,10 @@ import { Button } from "../ui/button";
 
 type userCardProps = {
     user: Models.Document;
+    showPostCount: boolean;
 }
 
-const UserCard = ({ user }: userCardProps) => {
+const UserCard = ({ user, showPostCount }: userCardProps) => {
     return (
         <Link to={`/profile/${user.$id}`} className="user-card">
             <img
@@ -24,6 +25,15 @@ const UserCard = ({ user }: userCardProps) => {
                 <p className="small-regular text-light-3 text-center line-clamp-1">
                     @{user.username}
                 </p>
+                {showPostCount ? (
+                    <p className="small-regular text-off-white">{user.posts.length} {user.posts.length>1 ?(
+                        'posts'
+                    ) : (
+                        'post'
+                    )}</p>
+                ):(
+                    <p></p>
+                )}
             </div>
 
             <Button type="button" size="sm" className="shad-button_primary px-5 group hover:bg-primary-600">

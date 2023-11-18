@@ -327,11 +327,15 @@ export async function deletePost(postId: string, imageId: string){
     if(!postId || !imageId) throw Error;
 
     try {
-        await databases.deleteDocument(
+        const statusCode = await databases.deleteDocument(
             appwriteConfig.databaseId,
             appwriteConfig.postCollectionId,
             postId
         )
+        
+        if(!statusCode) throw Error;
+
+        await deleteFile(imageId)
 
         return { status: 'ok'};
     } catch (error) {
@@ -402,7 +406,7 @@ export async function getUsers(limit?: number){
 
 export async function getTopUsers(limit?: number){
     
-    const queries: any[] = [Query.orderDesc('')]
+    const queries: any[] = []
 
     if(limit){
         queries.push(Query.limit(limit));
