@@ -80,9 +80,9 @@ const LeftSidebar = () => {
                 </ul>
             </div>
 
-            <Button variant="ghost" className="shad-button_ghost" onClick={(e) => handleSignOut(e)}>
-                <img src="/assets/icons/logout.svg" alt="logout" />
-                <p className='small-medium lg:base-mdeium'>Logout</p>
+            <Button variant="ghost" className="shad-button_ghost group" onClick={(e) => handleSignOut(e)}>
+                <img src="/assets/icons/logout.svg" alt="logout" className="group-hover:invert-white" />
+                <p className='small-medium lg:base-medium'>Logout</p>
             </Button>
         </nav>
     )

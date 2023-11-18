@@ -26,7 +26,7 @@ const UserCard = ({ user }: userCardProps) => {
                 </p>
             </div>
 
-            <Button type="button" size="sm" className="shad-button_primary px-5">
+            <Button type="button" size="sm" className="shad-button_primary px-5 group hover:bg-primary-600">
                 Follow
             </Button>
         </Link>

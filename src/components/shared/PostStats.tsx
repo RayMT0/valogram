@@ -66,7 +66,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
                     width={20}
                     height={20}
                     onClick={handleLikePost}
-                    className="cursor-pointer"
+                    className="cursor-pointer hover:invert-white"
                 />
                 <p className='small-medium lg:base-medium'>{likes.length}</p>
             </div>
@@ -77,7 +77,7 @@ const PostStats = ({ post, userId }: PostStatsProps) => {
                     width={20}
                     height={20}
                     onClick={handleSavePost}
-                    className="cursor-pointer"
+                    className="cursor-pointer hover:invert-white"
                 />}
             </div>
         </div>

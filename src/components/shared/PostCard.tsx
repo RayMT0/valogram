@@ -45,6 +45,7 @@ const PostCard = ({ post }: PostCardProps) => {
                         alt="edit"
                         width={20}
                         height={20}
+                        className='hover:invert-white'
                     />
                 </Link>
             </div>
