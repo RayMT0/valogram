@@ -1,4 +1,5 @@
 import { Route, Routes, Link, Outlet, useParams, useLocation } from 'react-router-dom'
+import { useState } from 'react'
 
 import Loader from "@/components/shared/Loader";
 import { useGetUserById, useGetUserPosts } from "@/lib/react-query/queriesAndMutations"
@@ -13,16 +14,23 @@ const Profile = () => {
   const { id: profileId } = useParams();
   const { user } = useUserContext();
   const { pathname } = useLocation();
-
+  const [filter, setFilter] = useState(false);
+  
   const { data: currentProfile } = useGetUserById(profileId || "");
   const { data: currentPosts } = useGetUserPosts(profileId || "");
-
-  if(!currentProfile){
+  
+  if(!currentProfile || !currentPosts ){
     return(
       <div className='flex-center w-full h-full'>
         <Loader />
       </div>
     )
+  }
+
+  const handleFilter = (e:React.MouseEvent<HTMLButtonElement,MouseEvent>) => {
+    e.preventDefault();
+    setFilter(!filter);
+    currentPosts.documents.reverse();
   }
 
   return (
@@ -70,29 +78,44 @@ const Profile = () => {
       </div>
 
       {currentProfile.$id === user.id && (
-        <div className='flex max-w-5xl w-full'>
-          <Link to={`/profile/${profileId}`} className={`profile-tab rounded-l-lg ${ pathname === `/profile/${profileId}` && '!bg-dark-3'}`}>
-            <img 
-              src={'/assets/icons/posts.svg'} 
-              alt="posts"
-              width={20}
-              height={20}
-            />
-            Posts
-          </Link>
-          <Link to={`/profile/${profileId}/liked-posts`} className={`profile-tab rounded-r-lg ${ pathname === `/profile/${profileId}/liked-posts` && '!bg-dark-3'}`}>
-            <img 
-              src="/assets/icons/like.svg" 
-              alt="like" 
-              width={20}
-              height={20}
-            />
-            Liked Posts
-          </Link>
+        <div className='max-w-5xl w-full flex-between'>
+          <div className='flex flex-row'>
+            <Link to={`/profile/${profileId}`} className={`profile-tab rounded-l-lg ${ pathname === `/profile/${profileId}` && '!bg-dark-3'}`}>
+              <img 
+                src={'/assets/icons/posts.svg'} 
+                alt="posts"
+                width={20}
+                height={20}
+              />
+              Posts
+            </Link>
+            <Link to={`/profile/${profileId}/liked-posts`} className={`profile-tab rounded-r-lg ${ pathname === `/profile/${profileId}/liked-posts` && '!bg-dark-3'}`}>
+              <img 
+                src="/assets/icons/like.svg" 
+                alt="like" 
+                width={20}
+                height={20}
+              />
+              Liked Posts
+            </Link>
+          </div>
+          {pathname === `/profile/${profileId}` &&(
+            <Button type='button' onClick={(e) => handleFilter(e)} className='shad-button_dark_4 items-center'>
+              <img 
+                src="/assets/icons/filter.svg" 
+                alt="filter"
+              />
+              {filter ? (
+                'Oldest'
+              ) : (
+                'Latest'
+              )}
+            </Button>
+          )}
         </div>
       )}
       <Routes>
-        <Route index element={<GridPostList posts={currentPosts?.documents} showUser={false}/>}/>
+        <Route index element={<GridPostList posts={currentPosts.documents} showUser={false} showStats={false}/>}/>
         {currentProfile.$id === user.id && (
           <Route path='/liked-posts' element={<LikedPosts/>}/>
         )}
