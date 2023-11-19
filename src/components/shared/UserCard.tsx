@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 
 import { Models } from "appwrite";
 import { Button } from "../ui/button";
-import StatBlock from "./StatBlock";
-
 
 type userCardProps = {
     user: Models.Document;
@@ -27,7 +25,6 @@ const UserCard = ({ user, showPostCount }: userCardProps) => {
                     @{user.username}
                 </p>
                 {showPostCount ? (
-                    // <StatBlock value={user.posts.length} label="Posts"/>
                     <p className="small-medium text-primary-500 flex flex-row justify-center w-full gap-2 flex-wrap">{user.posts.length} {user.posts.length>1 ?(
                         <p className="text-light-1">Posts</p>
                     ) : (
