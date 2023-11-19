@@ -1,7 +1,7 @@
 import { Route, Routes, Link, Outlet, useParams, useLocation } from 'react-router-dom'
 
 import Loader from "@/components/shared/Loader";
-import { useGetUserById } from "@/lib/react-query/queriesAndMutations"
+import { useGetUserById, useGetUserPosts } from "@/lib/react-query/queriesAndMutations"
 import { useUserContext } from '@/context/AuthContext';
 import StatBlock from '@/components/shared/StatBlock';
 import { Button } from '@/components/ui/button';
@@ -13,8 +13,9 @@ const Profile = () => {
   const { id: profileId } = useParams();
   const { user } = useUserContext();
   const { pathname } = useLocation();
-  const { data: currentProfile } = useGetUserById(profileId || "");
 
+  const { data: currentProfile } = useGetUserById(profileId || "");
+  const { data: currentPosts } = useGetUserPosts(profileId || "");
 
   if(!currentProfile){
     return(
@@ -91,7 +92,7 @@ const Profile = () => {
         </div>
       )}
       <Routes>
-        <Route index element={<GridPostList posts={currentProfile.posts.reverse()} showUser={false}/>}/>
+        <Route index element={<GridPostList posts={currentPosts?.documents} showUser={false}/>}/>
         {currentProfile.$id === user.id && (
           <Route path='/liked-posts' element={<LikedPosts/>}/>
         )}
