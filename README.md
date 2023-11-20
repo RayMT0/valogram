@@ -18,14 +18,13 @@ Done :
 - Post interactions
 - Saved Posts
 - Post details
-- Infinite scrolls
+- Infinite scrolls (Explore Page)
 - All User
 - User Profile
 - Top Creators
-
+- Edit Profile
 
 Currently Developed :
-- Edit profile
 - Assets recolor
 
 Future Development :
