@@ -27,12 +27,7 @@ const Profile = () => {
     )
   }
 
-  const handleFilter = (e:React.MouseEvent<HTMLButtonElement,MouseEvent>) => {
-    e.preventDefault();
-    setFilter(!filter);
-    currentPosts.documents.reverse();
-  }
-
+  console.log()
   return (
     <div className="profile-container">
       <div className="profile-inner_container">
@@ -99,8 +94,8 @@ const Profile = () => {
               Liked Posts
             </Link>
           </div>
-          {pathname === `/profile/${profileId}` &&(
-            <Button type='button' onClick={(e) => handleFilter(e)} className='shad-button_dark_4 items-center'>
+          {(pathname === `/profile/${profileId}` || pathname === `/profile/${profileId}/oldest`) && (
+            <Button type='button' onClick={() => setFilter(!filter)} className='shad-button_dark_4 items-center'>
               <img 
                 src="/assets/icons/filter.svg" 
                 alt="filter"
@@ -115,9 +110,13 @@ const Profile = () => {
         </div>
       )}
       <Routes>
-        <Route index element={<GridPostList posts={currentPosts.documents} showUser={false} showStats={false}/>}/>
+        {filter ? (
+          <Route index element={<GridPostList posts={currentProfile.posts} showUser={false} showStats={false}/>}/>
+        ) : (
+          <Route index element={<GridPostList posts={currentPosts.documents} showUser={false} showStats={false}/>}/>
+        )}
         {currentProfile.$id === user.id && (
-          <Route path='/liked-posts' element={<LikedPosts/>}/>
+            <Route path='/liked-posts' element={<LikedPosts/>}/>
         )}
       </Routes>
       <Outlet />
