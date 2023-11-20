@@ -19,23 +19,24 @@ Done :
 - Saved Posts
 - Post details
 - Infinite scrolls
+- All User
+- User Profile
+- Top Creators
 
 
 Currently Developed :
-- All users
-- User profile
 - Edit profile
-- Top users
 - Assets recolor
 
 Future Development :
 - Chat
+- Comments
 - App settings
 - Reels and stories
 
 # Backend development
 
-As said in the beginning i used [Appwrite](appwrite.io) to store data from the app. For querying data from appwrite database i used ReactQuery/Tanstack library. Infinite scroll feature is also possible because of Tanstack.
+As said in the beginning this project uses [Appwrite](appwrite.io) to store data from the app. For querying data from appwrite database i used ReactQuery/Tanstack library. Infinite scroll feature is also possible because of Tanstack.
 
 # Tools
 
