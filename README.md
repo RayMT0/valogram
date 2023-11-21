@@ -25,11 +25,10 @@ Done :
 - Edit Profile
 
 Currently Developed :
-- Assets recolor
+- Comments
 
 Future Development :
 - Chat
-- Comments
 - App settings
 - Reels and stories
 

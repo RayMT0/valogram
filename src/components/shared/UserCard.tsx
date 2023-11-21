@@ -35,7 +35,7 @@ const UserCard = ({ user, showPostCount }: userCardProps) => {
                 )}
             </div>
 
-            <Button type="button" size="sm" className="shad-button_primary px-5 group hover:bg-primary-600">
+            <Button type="button" size="sm" className="shad-button_primary px-5 group hover:bg-primary-500">
                 Follow
             </Button>
         </Link>
