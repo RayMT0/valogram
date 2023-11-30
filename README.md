@@ -1,6 +1,6 @@
 # Social Media App Project
 
-This project uses React JS, Typescript, and Vite to develop. Appwrite is also used as the backend of the project. The app is built to be a social platform for valorant players where they can share and see posts or clips of their valorant game experience.
+This project uses React JS, Typescript, and Vite to develop. Appwrite is also used as the backend of the project. The app is built to be a social platform for valorant players where they can share and see posts or clips of the valorant game experience.
 
 ## Features
 
